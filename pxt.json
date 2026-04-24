@@ -13,7 +13,8 @@
         "Vector2Int.ts",
         "Snake.ts",
         "Apple.ts",
-        "Input.ts"
+        "Input.ts",
+        "Mennu.ts"
     ],
     "testFiles": [],
     "targetVersions": {
