@@ -14,9 +14,7 @@
         "Snake.ts",
         "Apple.ts"
     ],
-    "testFiles": [
-        "test.ts"
-    ],
+    "testFiles": [],
     "targetVersions": {
         "branch": "master",
         "tag": "v8.1.11",
