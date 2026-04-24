@@ -1,19 +1,20 @@
 // Gib deinen Code hier ein
 class Snake {
     points: Vector2Int[];
-    direction: number;
 
     constructor(){
         this.points = [new Vector2Int(2, 2), new Vector2Int(1, 2), new Vector2Int(0, 2)]
-        this.direction	= 1;
         SchowVectorArr(this.points)
     }
     	
-    Tackt(apple: Apple){
+    Tackt(apple: Apple, inp: Input){
         let nextPointDir: Vector2Int
         let nextPoint: Vector2Int
-        nextPointDir = this.GetDir()
+        nextPointDir = this.GetDir(inp)
         nextPoint = this.points[0].add(nextPointDir)
+        if(this.WallColision(nextPoint) || this.Collision(nextPoint)){
+            basic.showString("hi!")
+        }
         this.points.unshift(nextPoint)
         SchowVector(nextPoint);
         let isWithAppleColosion = apple.Collision(this.points[0], this)
@@ -23,17 +24,17 @@ class Snake {
         }
     }
 
-    GetDir(): Vector2Int
+    GetDir(inp: Input): Vector2Int
     {
         let nextPointDir: Vector2Int
 
-        if (this.direction == 0) {
+        if (inp.dir == 0) {
             nextPointDir = new Vector2Int(0, 1)
-        } else if (this.direction == 1) {
+        } else if (inp.dir == 1) {
             nextPointDir = new Vector2Int(1, 0)
-        } else if (this.direction == 2) {
+        } else if (inp.dir == 2) {
             nextPointDir = new Vector2Int(0, -1)
-        } else if (this.direction == 3) {
+        } else if (inp.dir == 3) {
             nextPointDir = new Vector2Int(-1, 0)
         } else {
             nextPointDir = new Vector2Int(0, 1)
@@ -50,5 +51,13 @@ class Snake {
             }
         }
         return ret;
+    }
+
+    WallColision(nextPoint: Vector2Int) : boolean
+    {
+        if(nextPoint.x > 4 || nextPoint.y > 4 || nextPoint.x < 0|| nextPoint.y < 0){
+            return true
+        }
+        return false
     }
 }

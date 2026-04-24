@@ -12,7 +12,8 @@
         "README.md",
         "Vector2Int.ts",
         "Snake.ts",
-        "Apple.ts"
+        "Apple.ts",
+        "Input.ts"
     ],
     "testFiles": [],
     "targetVersions": {

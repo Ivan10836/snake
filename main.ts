@@ -57,12 +57,20 @@ function SchowVector(v: Vector2Int){
 function HideVector(v: Vector2Int) {
     led.unplot(v.x, v.y)
 }
+input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
+    _input.ButtA()
+})
+input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
+    _input.ButtB()
+})
 
 let snake = new Snake()
 let apple = new Apple()
+let _input = new Input()
 
 basic.pause(1000)
 while(true){
-    snake.Tackt(apple);
+    snake.Tackt(apple, _input);
     basic.pause(1000)
 }
+

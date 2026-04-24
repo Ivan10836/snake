@@ -8,8 +8,7 @@ class Apple{
     }
 
     Collision(V: Vector2Int, snake: Snake): boolean {
-        if (this.apple.x == V.x && this.apple.y == V.y){
-            HideVector(this.apple)
+        if (this.apple.isSame(V)){
             this.NewRamdomApple(snake)
             SchowVector(this.apple)
             return true;
