@@ -27,13 +27,13 @@ input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
     if (!(isConect)) {
         radio.sendString("IMaster")
     } else {
-        if(isMaster){
+        if(isConect && !snake.IsSnakeAtThisZone()){
             _input.ButtA()
         }
     }
 })
 input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
-    if (isMaster) {
+    if (isConect && !snake.IsSnakeAtThisZone()) {
         _input.ButtB()
     }
 })
@@ -75,13 +75,14 @@ radio.onReceivedString(function (receivedString) {
 radio.onReceivedNumber(function (receivedNumber) {
     if (apple.NewApplePosTranslateStage != 0 && isConect && !(isMaster)) {
         apple.TakeNewApplePosPackage(receivedNumber)
-    }else if(!isMaster && isConect){
+    }else if(snake.IsSnakeAtThisZone() && isConect){
         _input.TakeInputPacket(receivedNumber)
     }
 })
 
 let isConect = false
 let isMaster = false
+let isDirWasChange = false
 
 radio.setGroup(55)
 
@@ -99,5 +100,6 @@ basic.pause(1000)
 
 while (true) {
     snake.Tackt(apple, _input);
-basic.pause(1000)
+    isDirWasChange = false
+    basic.pause(1000)
 }

@@ -13,7 +13,7 @@ class Snake {
         nextPointDir = this.GetDir(inp)
         nextPoint = this.points[0].add(nextPointDir)
         if(this.WallColision(nextPoint) || this.Collision(nextPoint)){
-            basic.showString("hi!")
+            this.Die()
         }
         this.points.unshift(nextPoint)
         SchowVector(nextPoint);
@@ -59,5 +59,40 @@ class Snake {
             return true
         }
         return false
+    }
+
+    IsSnakeAtThisZone() : boolean{
+        if(this.points[0].x > 4){
+            if(isMaster){
+                return false
+            }else{
+                return true
+            }
+        }else{
+            if (isMaster) {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
+
+    Die(){
+        basic.clearScreen()
+        basic.showString("Die")
+        basic.pause(2000)
+        basic.clearScreen()
+
+        basic.showLeds(`
+        . . . . .
+        . # . # .
+        . . . . .
+        . # # # .
+        # . . . #
+        `)
+
+        while(true){
+            basic.pause(1)
+        }
     }
 }

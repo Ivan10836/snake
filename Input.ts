@@ -7,27 +7,38 @@ class Input {
     }    
 
     ButtA(){
+        if (isDirWasChange){
+            return
+        }
+
         this.dir++
         if (this.dir == 4) {
             this.dir = 0
         }
-        if (isMaster) {
-            radio.sendNumber(this.dir)
-        }
+        radio.sendNumber(this.dir)
+
+        isDirWasChange = true
     }
+    
     ButtB(){
+        if (isDirWasChange) {
+            return
+        }
+        
         this.dir--
         if(this.dir == -1){
             this.dir = 3
         }
-        if(isMaster){
-            radio.sendNumber(this.dir)
-        }
+        
+        radio.sendNumber(this.dir)
+
+        isDirWasChange = true
     }
 
     TakeInputPacket(dir: number){
-        if(!isMaster){
+        if (snake.IsSnakeAtThisZone()){
             this.dir = dir
+            isDirWasChange = true
         }
     }
 }
