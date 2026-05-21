@@ -55,7 +55,7 @@ class Snake {
 
     WallColision(nextPoint: Vector2Int) : boolean
     {
-        if(nextPoint.x > 4 || nextPoint.y > 4 || nextPoint.x < 0|| nextPoint.y < 0){
+        if(nextPoint.x > 9 || nextPoint.y > 4 || nextPoint.x < 0|| nextPoint.y < 0){
             return true
         }
         return false

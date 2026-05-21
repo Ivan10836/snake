@@ -3,9 +3,16 @@ function HideVectorArr (v: any[]) {
         HideVector(v[j])
     }
 }
+radio.onReceivedNumber(function (receivedNumber) {
+    if (apple.NewApplePosTranslateStage != 0 && isConect && !(isMaster)) {
+        apple.TakeNewApplePosPackage(receivedNumber)
+    }
+})
 input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
     if (!(isConect)) {
         radio.sendString("IMaster")
+    } else {
+        _input.ButtA()
     }
 })
 function SchowVectorArr (v: any[]) {
@@ -13,6 +20,9 @@ function SchowVectorArr (v: any[]) {
         SchowVector(v[i])
     }
 }
+input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
+    _input.ButtB()
+})
 radio.onReceivedString(function (receivedString) {
     // Conect
     if (receivedString == "IMaster" && !(isConect)) {
@@ -47,30 +57,32 @@ radio.onReceivedString(function (receivedString) {
         basic.clearScreen()
     }
 })
-let isMaster = false
 let isConect = false
-radio.setGroup(55)
-
-function SchowVector(v: Vector2Int){
-    led.plot(v.x, v.y)
+let isMaster = false
+function SchowVector(v: Vector2Int) {
+    if (isMaster) {
+        led.plot(v.x, v.y)
+    } else {
+        led.plot(v.x - 5, v.y)
+    }
 }
 function HideVector(v: Vector2Int) {
-    led.unplot(v.x, v.y)
+    if (isMaster) {
+        led.unplot(v.x, v.y)
+    } else {
+        led.unplot(v.x - 5, v.y)
+    }
 }
-input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
-    _input.ButtA()
-})
-input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
-    _input.ButtB()
-})
-
+radio.setGroup(55)
+while (!(isConect)) {
+    basic.pause(1)
+}
+basic.pause(2000)
 let snake = new Snake()
 let apple = new Apple()
 let _input = new Input()
-
 basic.pause(1000)
-while(true){
+while (true) {
     snake.Tackt(apple, _input);
-    basic.pause(1000)
+basic.pause(1000)
 }
-
