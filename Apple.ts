@@ -23,7 +23,7 @@ class Apple{
             let noCompleat = true;
             let oldApple = this.apple;
             while (noCompleat) {
-                this.apple = new Vector2Int(randint(0, 4), randint(0, 4))
+                this.apple = new Vector2Int(randint(0, 9), randint(0, 4))
                 if (!snake.Collision(this.apple) && !this.apple.isSame(oldApple)) {
                     noCompleat = false;
                 }
