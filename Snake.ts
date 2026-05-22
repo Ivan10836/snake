@@ -90,7 +90,10 @@ class Snake {
         . # # # .
         # . . . #
         `)
-
+        basic.clearScreen()
+        basic.pause(2000)
+        basic.showNumber(this.points.length)
+        basic.pause(2000)
         while(true){
             basic.pause(1)
         }
