@@ -79,7 +79,7 @@ class Snake {
 
     Die(){
         basic.clearScreen()
-        basic.showString("Die")
+        basic.showString("Death")
         basic.pause(2000)
         basic.clearScreen()
 
